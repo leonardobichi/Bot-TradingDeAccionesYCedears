@@ -3,9 +3,13 @@ from Functions.logs import print_log
 import matplotlib.pyplot as plt
 import pandas as pd
 import yfinance as yf
+import configparser
 
 yf.pdr_override()
 plt.ioff()
+config = configparser.ConfigParser()
+config.read('Config\Config\config.conf')
+path_save_grafic = config['PATHS']['ruta_guardar_grafico_imagen']
 
 def get_data(tickers,fecha_inicio,fecha_fin):
     print_log('INFO','Inicio función: get_data')
@@ -46,5 +50,6 @@ def generate_and_save_grafic(data,accion):
     data.plot()
     #Guardar grafico
     print_log('INFO','Guarda el gráfico')
-    plt.savefig(f'C:\\Users\\PC\\Documents\\Desarrollos\\Python\\Bot - Trading de Acciones y Cedears\\Config\\Output\\Grafico-Media-Movil-{accion}.png')
+    print(f'{path_save_grafic}{accion}.png')
+    plt.savefig(f'{path_save_grafic}{accion}.png')
     print_log('INFO','Fins función: generate_and_save_grafic')

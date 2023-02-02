@@ -1,7 +1,12 @@
 from Functions.calcular_media_movil import *
+from Functions.input_acciones import *
 from Functions.logs import print_log
+import configparser
 
-acciones = ['META']
+config = configparser.ConfigParser()
+config.read('Config\Config\config.conf')
+prueba = config['PATHS']['ruta_logs']
+acciones = ['META','SHOP']
 inicio = '2023-01-01'
 fin = '2023-02-01'
 tipo_log_exception= 'EXCEPTION'
